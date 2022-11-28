@@ -31,9 +31,11 @@ class Perceptron {
 
   /* getters & setters */
   vector<double> getWeights();
-  void setWeights(vector<double> w_init);
+  void set_weights(vector<double> w_init);
 
   /* methods */
   double predict(vector<double> x);
   double sigmoid(double x);
 };
+
+double squareRoot(const double a);

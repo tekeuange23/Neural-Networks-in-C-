@@ -1,3 +1,4 @@
+# setup ---> https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/
 cmake_minimum_required(VERSION 2.6)
 
 project(MLP)

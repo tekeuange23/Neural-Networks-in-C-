@@ -19,7 +19,7 @@ Perceptron::Perceptron(int inputs, double bias) {
 vector<double> Perceptron::getWeights() {
   return this->weights;
 }
-void Perceptron::setWeights(vector<double> w_init) {
+void Perceptron::set_weights(vector<double> w_init) {
   this->weights = w_init;
 }
 
@@ -33,13 +33,10 @@ double frand() {
   double time2 = 2.0 * (double)rand() / RAND_MAX;  // time2 belongs to [0, 2]
   return time2 - 1.0;                              // belongs to [-1, 1]
 }
-double squareRoot(const double a) {
-  double b = sqrt(a);
-  if (b != b) {  // nan check
-    return -1.0;
-  } else {
-    return sqrt(a);
-  }
+/* Precision of @n digit after the dot */
+double precision(double num, int n) {
+  double value = (int)(num * pow(10, n));
+  return (double)value / pow(10, n);
 }
 /***************************************************************************************
                                          Methods
