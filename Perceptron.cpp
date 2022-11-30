@@ -1,7 +1,8 @@
-#include "MLP.h"
+#include "Perceptron.h"
 
 /* Helper's prototypes */
 double frand();
+double precision(double num, int n);
 
 /***************************************************************************************
                               Constructors | Getters | Setters
@@ -38,6 +39,7 @@ double precision(double num, int n) {
   double value = (int)(num * pow(10, n));
   return (double)value / pow(10, n);
 }
+
 /***************************************************************************************
                                          Methods
 ****************************************************************************************/
@@ -47,5 +49,9 @@ double Perceptron::predict(vector<double> x) {
   return sigmoid(z);
 }
 double Perceptron::sigmoid(double x) {
+  // double s = 1.0 / (1.0 + exp(-x));
+  // cout << "sigmoid(" << x << ") == " << s << endl;
+  // return s;
+
   return 1.0 / (1.0 + exp(-x));
 }
