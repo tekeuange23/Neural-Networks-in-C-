@@ -1,0 +1,17 @@
+#include "Perceptron.h"
+
+class MultiLayerPerceptron {
+ public:
+  MultiLayerPerceptron(vector<int>, layers, double bias = 1.0, double learning_rate = 0.5);
+  void set_weights(vector<vector<vector<double>>> w_init);
+  void print_weights();
+  vector<double> predict(vector<double> x);
+  double bp(vector<double> x, vector<double> y);
+
+  vector<int> layers;  // number of neurons per layers including the input layer
+  double bias;
+  double learning_rate;
+  vector<vector<Perceptron>> network;
+  vector<vector<double>> value;  // outputs values of neurons
+  vector<vector<double>> d;      // error term
+}
