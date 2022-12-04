@@ -27,7 +27,7 @@ class Perceptron {
 
  public:
   Perceptron(int inputs, double bias = 1.0);
-  ~Perceptron();
+  // ~Perceptron();
 
   /* getters & setters */
   vector<double> getWeights();

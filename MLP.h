@@ -2,16 +2,20 @@
 
 class MultiLayerPerceptron {
  public:
-  MultiLayerPerceptron(vector<int>, layers, double bias = 1.0, double learning_rate = 0.5);
+  MultiLayerPerceptron(vector<int> layers, double bias = 1.0, double learning_rate = 0.5);
+  // ~MultiLayerPerceptron();
+
   void set_weights(vector<vector<vector<double>>> w_init);
   void print_weights();
   vector<double> predict(vector<double> x);
   double bp(vector<double> x, vector<double> y);
 
-  vector<int> layers;  // number of neurons per layers including the input layer
+ private:
   double bias;
   double learning_rate;
+
   vector<vector<Perceptron>> network;
-  vector<vector<double>> value;  // outputs values of neurons
-  vector<vector<double>> d;      // error term
-}
+  vector<int> layers;             // number of neurons per layers including the input layer
+  vector<vector<double>> values;  // SUM_wi.xi outputs values of each perceptron
+  vector<vector<double>> d;       // error term
+};
