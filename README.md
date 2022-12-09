@@ -13,3 +13,7 @@ $ make
 ``` 
 $ ./runTests 
 ```
+
+
+## The Perceptron class
+## The MultiLayerPerceptron class

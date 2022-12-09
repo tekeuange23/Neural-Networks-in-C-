@@ -42,3 +42,30 @@ vector<double> MultiLayerPerceptron::predict(vector<double> x) {
       this->values[i][j] = this->network[i][j].predict(this->values[i - 1]);
   return this->values.back();
 }
+double back_propagate(vector<double> x, vector<double> y) {
+  // Backpropagation::
+
+  // STEP 1: Feed a sample to the network
+  // STEP 2: Calculate the MSE
+  // STEP 3: Calculate the output error terms
+
+  // STEP 4: Calculate the error term of each unit on each layer
+  for (int i = this->network.size() - 2; i > 0; i--) {
+    for (int h = 0; h < this->network[i].size(); h++) {
+      double fwd_error = 0.0;
+      for (int k = 0; k < this->layers[i + 1]; k++) {
+        //
+      }
+      //
+    }
+  }
+
+  // STEP 5 & 6 : Calculate the deltas and update the weights
+  for (int i = 1; i < this->network.size(); i++) {
+    for (int j = 0; j < this->layers[i]; j++) {
+      for (int k = 0; k < this->layers[i - 1] + 1; k++) {  // +1 for the bias input neuron
+        //
+      }
+    }
+  }
+}

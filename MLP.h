@@ -8,7 +8,7 @@ class MultiLayerPerceptron {
   void set_weights(vector<vector<vector<double>>> w_init);
   void print_weights();
   vector<double> predict(vector<double> x);
-  double bp(vector<double> x, vector<double> y);
+  double back_propagate(vector<double> x, vector<double> y);
 
  private:
   double bias;
@@ -17,5 +17,5 @@ class MultiLayerPerceptron {
   vector<vector<Perceptron>> network;
   vector<int> layers;             // number of neurons per layers including the input layer
   vector<vector<double>> values;  // SUM_wi.xi outputs values of each perceptron
-  vector<vector<double>> d;       // error term
+  vector<vector<double>> delta;   // error term
 };
