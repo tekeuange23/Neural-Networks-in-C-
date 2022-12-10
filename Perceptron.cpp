@@ -17,11 +17,14 @@ Perceptron::Perceptron(int inputs, double bias) {
   this->weights.resize(inputs + 1);
   generate(weights.begin(), weights.end(), frand);
 }
-vector<double> Perceptron::getWeights() {
+vector<double> Perceptron::get_weights() {
   return this->weights;
 }
 void Perceptron::set_weights(vector<double> w_init) {
   this->weights = w_init;
+}
+void Perceptron::incr_weight(int index, double delta) {
+  this->weights[index] += delta;
 }
 
 /***************************************************************************************

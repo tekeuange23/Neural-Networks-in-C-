@@ -30,8 +30,9 @@ class Perceptron {
   // ~Perceptron();
 
   /* getters & setters */
-  vector<double> getWeights();
+  vector<double> get_weights();
   void set_weights(vector<double> w_init);
+  void incr_weight(int index, double delta);
 
   /* methods */
   double predict(vector<double> x);

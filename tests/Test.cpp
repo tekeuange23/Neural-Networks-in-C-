@@ -72,7 +72,7 @@ TEST(OR_GATE, ________________USING_A_TWO_INPUT_PERCEPTRON_WITH_DEFINED_WEIGHT__
  *                                                                                    +---+---+-----------------+---------+
  *                                                                                    | 1 | 1 |     0.007153    |    0    |
  **************************************************************************************************************************/
-TEST(XOR_GATE, _______________USING_A_TWO_INPUT_PERCEPTRON_WITH_DEFINED_WEIGHT_______________) {
+TEST(XOR_GATE, __________________USING_A_TWO_INPUT_MLP_WITH_DEFINED_WEIGHT___________________) {
   MultiLayerPerceptron* mlp = new MultiLayerPerceptron({2, 2, 1});
   mlp->set_weights({{{-10, -10, 15}, {10, 10, -5}},
                     {{10, 10, -15}}});
@@ -91,7 +91,7 @@ TEST(XOR_GATE, _______________USING_A_TWO_INPUT_PERCEPTRON_WITH_DEFINED_WEIGHT__
   }
 }
 
-/*********************************************  LOGICAL XOR GATE PREDICTION  **********************************************
+/*********************************************   LOGICAL XOR GATE TRAINING   **********************************************
  *                                              Xor(A,B) = And(Or(A,B), NAnd(A,B))
  *                                              :NON-LINEAR                           _____________________________________
  *   A   --->___________                                                              | A | B |        Y        | Xor(A,B)|
@@ -104,16 +104,33 @@ TEST(XOR_GATE, _______________USING_A_TWO_INPUT_PERCEPTRON_WITH_DEFINED_WEIGHT__
  *                                                                                    +---+---+-----------------+---------+
  *                                                                                    | 1 | 1 |     0.007153    |    0    |
  **************************************************************************************************************************/
-TEST(XOR_GATE, _______________USING_A_TWO_INPUT_PERCEPTRON_WITH_DEFINED_WEIGHT_______________) {
+TEST(XOR_GATE, ___________________________TRAINING_A_TWO_INPUT_MLP___________________________) {
   MultiLayerPerceptron* mlp = new MultiLayerPerceptron({2, 2, 1});
-  mlp->set_weights({{{-10, -10, 15}, {10, 10, -5}},
-                    {{10, 10, -15}}});
+
+  /** TRAINING **/
+  double MSE;
+  int epochs = 3000;
+
+  for (int i = 0; i < epochs; i++) {
+    MSE = 0.0;
+
+    cout << "The MSE after " << i << "\ttraining epochs equals to " << MSE << endl;
+    MSE = mlp->back_propagate({0, 0}, {0});
+    cout << "The MSE after " << i << "\ttraining epochs equals to " << MSE << endl;
+    MSE = mlp->back_propagate({0, 1}, {1});
+    MSE = mlp->back_propagate({1, 0}, {1});
+    MSE = mlp->back_propagate({1, 1}, {0});
+    MSE = MSE / 4.0;
+    if (i % 100 == 0) {
+      cout << "The MSE after " << i << "\ttraining epochs equals to " << MSE << endl;
+    }
+  }
 
   mlp->print_weights();
 
   vector<vector<vector<double>>> matrix = {
-      {{0.007153, precision(mlp->predict({0, 0})[0], 10)}, {0.992356, precision(mlp->predict({0, 1})[0], 8)}},
-      {{0.992356, precision(mlp->predict({0, 1})[0], 8)}, {0.007153, precision(mlp->predict({1, 1})[0], 9)}}};
+      {{0, mlp->predict({0, 0})[0]}, {1, mlp->predict({0, 1})[0]}},
+      {{1, mlp->predict({0, 1})[0]}, {0, mlp->predict({1, 1})[0]}}};
 
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 2; j++) {
@@ -123,6 +140,7 @@ TEST(XOR_GATE, _______________USING_A_TWO_INPUT_PERCEPTRON_WITH_DEFINED_WEIGHT__
   }
 }
 
+/**************************************************************************************************************************/
 /*************************************************   MAIN TESTS RUNNER  ***************************************************/
 /**************************************************************************************************************************/
 int main(int argc, char** argv) {
