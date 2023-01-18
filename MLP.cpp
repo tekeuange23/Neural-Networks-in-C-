@@ -62,7 +62,10 @@ double MultiLayerPerceptron::back_propagate(vector<double> x, vector<double> y) 
    */
 
   // STEP 3: Calculate the output error terms
-  cout << "------------------------OKKKKK " << y.size() << " == " << outputs.size() << endl;
+  cout << " ================================ "
+       << y.size() << " == " << outputs.size()
+       << endl;
+  // this->delta = {{}};
   for (int i = 0; i < outputs.size(); i++) {
     this->delta.back()[i] = outputs[i] * (1 - outputs[i]) * error[i];
   }
