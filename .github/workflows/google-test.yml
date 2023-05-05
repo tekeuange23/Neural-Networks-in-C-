@@ -1,0 +1,17 @@
+name: google-test
+
+on: push
+
+jobs:
+  test:
+    name: run-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Action
+      uses: actions/checkout@v2
+    - name: Compile the tests and code
+      run: |
+        cmake CMakeLists.txt
+        make
+    - name: Run the tests
+      run: ./runTests 
