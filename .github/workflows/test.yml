@@ -14,11 +14,11 @@ jobs:
     steps:
       # macOs
       - uses: actions/checkout@v2
-      - name: Install googletest on macOs
+      - name: Install googletest on macOs   # -- INSTALL --
         uses: ./
         if: matrix.os != 'macOs-latest'
-      - name: install gcc-10 on macOs
-        if: matrix.os == 'macOs-latest'
+      - name: install gcc-10 on macOs       # -- INSTALL --
+        if: matrix.os == 'macOs-latest'     
         run: brew install gcc@10
       - name: install googletest on macOs
         if: matrix.os == 'macOs-latest'
@@ -26,15 +26,7 @@ jobs:
         with: # Set CC_path and CXX_path to gcc-10 and g++-10
           CC_path: /usr/local/bin/gcc-10
           CXX_path: /usr/local/bin/g++-10
-      
-      # Ubuntu
-      - name: configure test ubuntu
-        if: matrix.os == 'ubuntu-latest'
-        run: cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" . -B build
-        working-directory: tests
-      
-      # macOs
-      - name: configure test macOs
+      - name: configure test macOs          # -- CONFIG --
         if: matrix.os == 'macOs-latest'
         run: cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" . -B build
         working-directory: tests
@@ -42,20 +34,30 @@ jobs:
           CC: /usr/local/bin/gcc-10
           CXX: /usr/local/bin/g++-10
       
+      # Ubuntu
+      - name: configure test ubuntu         # -- CONFIG --
+        if: matrix.os == 'ubuntu-latest'
+        run: cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" . -B build
+        working-directory: tests
+      - name: run test ubuntu               # --  RUN  --
+        if: matrix.os == 'ubuntu-latest'
+        run: ./runTests
+        working-directory: tests
+
       # Windows
-      - name: build test on windows
+      - name: build test on windows         # -- BUILD  --
         if: matrix.os != 'windows-latest'
         run: cmake --build .
         working-directory: tests/build
-      - name: configure windows
+      - name: configure windows             # -- CONFIG --
         run: cmake . -B build
         if: matrix.os == 'windows-latest'
         working-directory: tests
-      - name: build windows
+      - name: build windows                 # -- BUILD --
         if: matrix.os == 'windows-latest'
         run: cmake --build . --config Release
         working-directory: tests/build
-      - name: run test on windows
+      - name: run test on windows           # -- BUILD --
         if: matrix.os != 'windows-latest'
         run: ./runTests
         working-directory: tests/build

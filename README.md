@@ -4,10 +4,10 @@
 
 ### Compile the test and code
 ```
-$ cmake CMakeLists.txt
+$ cmake tests/CMakeLists.txt
 ```
 ```
-$ make
+$ make tests
 ```
 ### Run the tests
 ``` 
