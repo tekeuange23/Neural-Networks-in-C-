@@ -10,8 +10,6 @@ jobs:
     - name: Action
       uses: actions/checkout@v2
     - name: Compile the tests and code
-      run: |
-        cmake CMakeLists.txt
-        make
+      run: make
     - name: Run the tests
       run: ./runTests 
