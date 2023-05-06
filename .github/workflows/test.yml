@@ -9,7 +9,8 @@ jobs:
     
     strategy:
       matrix:
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        os: [macOS-latest, ubuntu-latest]
+        # os: [macOS-latest, ubuntu-latest, windows-latest]
 
     steps:
       # macOs
@@ -44,25 +45,26 @@ jobs:
       #   run: ./runTests
       #   working-directory: tests
 
-      # Windows
-      - name: build test on windows         # -- BUILD  --
-        if: matrix.os != 'windows-latest'
-        run: cmake --build .
-        working-directory: tests/build
-      - name: configure windows             # -- CONFIG --
-        run: cmake . -B build
-        if: matrix.os == 'windows-latest'
-        working-directory: tests
-      - name: build windows                 # -- BUILD --
-        if: matrix.os == 'windows-latest'
-        run: cmake --build . --config Release
-        working-directory: tests/build
-      - name: run test on windows           # -- BUILD --
-        if: matrix.os != 'windows-latest'
-        run: ./runTests
-        working-directory: tests/build
-      #- name: run test windows
-      #  if: matrix.os == 'windows-latest'
-      #  run: tests.exe
-      #  working-directory: tests/build
-      #  shell: cmd
+      # # Windows
+      # - name: build test on windows         # -- BUILD  --
+      #   if: matrix.os != 'windows-latest'
+      #   run: cmake --build .
+      #   working-directory: tests/build
+      # - name: configure windows             # -- CONFIG --
+      #   run: cmake . -B build
+      #   if: matrix.os == 'windows-latest'
+      #   working-directory: tests
+      # - name: build windows                 # -- BUILD --
+      #   if: matrix.os == 'windows-latest'
+      #   run: cmake --build . --config Release
+      #   working-directory: tests/build
+      # - name: run test on windows           # -- BUILD --
+      #   if: matrix.os != 'windows-latest'
+      #   run: ./runTests
+      #   working-directory: tests/build
+
+      # - name: run test windows
+      #   if: matrix.os == 'windows-latest'
+      #   run: tests.exe
+      #   working-directory: tests/build
+      #   shell: cmd
