@@ -54,10 +54,6 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: cmake --build .
         working-directory: tests/build
-      - name: run test on macOs - Ubuntu                  # --  RUN   --
-        if: matrix.os != 'windows-latest'
-        run: ./runTests
-        working-directory: tests/build
       
       # Windows
       - name: configure tests on windows                  # -- CONFIG --
@@ -67,6 +63,12 @@ jobs:
       - name: build tests on windows                      # -- BUILD --
         if: matrix.os == 'windows-latest'
         run: cmake --build . --config Release
+        working-directory: tests/build
+
+      # macOs - Ubuntu
+      - name: run test on macOs - Ubuntu                  # --  RUN   --
+        if: matrix.os != 'windows-latest'
+        run: ./runTests
         working-directory: tests/build
       # - name: run tests on windows                        # --  RUN   --
       #   if: matrix.os == 'windows-latest'
