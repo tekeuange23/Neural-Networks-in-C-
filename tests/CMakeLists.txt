@@ -8,7 +8,6 @@ if (DEFINED ENV{GITHUB_ACTIONS})
   if (WIN32)
     link_directories("D:/gtest/lib")
     include_directories("D:/gtest/include")
-
     set(CMAKE_CXX_FLAGS_RELEASE "/MT")
     set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
 
@@ -16,9 +15,9 @@ if (DEFINED ENV{GITHUB_ACTIONS})
     link_directories("/usr/local/lib")
     include_directories("/usr/local/include")
 
-  else # (UBUNTU)
+  elseif (UNIX)
     find_package(GTest REQUIRED)      
-    include_directories(${GTEST_INCLUDE_DIRS})                    # this is so we can #include <gtest/gtest.h>
+    include_directories(${GTEST_INCLUDE_DIRS})
   
   endif ()
 endif ()
