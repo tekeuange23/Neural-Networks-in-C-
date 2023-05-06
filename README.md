@@ -7,9 +7,12 @@
 $ cmake tests/CMakeLists.txt
 ```
 ```
-$ make tests
+$ cd tests
 ```
-### Run the tests
+```
+$ make
+```
+### Run tests (with current-dir on ./tests)
 ``` 
 $ ./runTests 
 ```
