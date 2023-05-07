@@ -1,4 +1,4 @@
-name: 'Googletest installer'
+name: 'Googletest installer' #https://github.com/MarkusJx/googletest-installer/blob/master/
 description: 'Build and install googletest'
 inputs:
   CC_path:
