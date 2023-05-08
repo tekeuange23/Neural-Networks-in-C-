@@ -45,10 +45,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" . -B build
         working-directory: tests
-      # - name: run tests on ubuntu                         # --  RUN  --
-      #   if: matrix.os == 'ubuntu-latest'
-      #   run: ./runTests
-      #   working-directory: tests
 
       # macOs - Ubuntu
       - name: build tests on macOs - Ubuntu               # -- BUILD  --
@@ -60,7 +56,7 @@ jobs:
       # - name: configure tests on windows                  # -- CONFIG --
       #   run: cmake . -B build
       #   if: matrix.os == 'windows-latest'
-      #   working-directory: tests
+      #   working-directory: tests/build
       # - name: build tests on windows                      # -- BUILD --
       #   if: matrix.os == 'windows-latest'
       #   run: cmake --build . --config Release
